@@ -3,7 +3,7 @@ package com.elvis.login.logueo.models;
 public class Producto {
     private Integer idProducto;
     private String nombre;
-    private String categoria;
+    private Categoria categoria;
     private String descripcion;
     private double precio;
     //Implementamos elconstructor
@@ -11,7 +11,7 @@ public class Producto {
 
     }
     //Constructor qeu inicializa los parametros
-    public Producto(Integer idProducto, String nombre, String categoria, String descripcion, double precio){
+    public Producto(Integer idProducto, String nombre, Categoria categoria, String descripcion, double precio){
         this.idProducto=idProducto;
         this.nombre=nombre;
         this.categoria=categoria;
@@ -35,11 +35,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

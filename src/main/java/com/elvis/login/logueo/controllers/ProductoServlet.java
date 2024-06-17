@@ -1,10 +1,7 @@
 package com.elvis.login.logueo.controllers;
 
 import com.elvis.login.logueo.models.Producto;
-import com.elvis.login.logueo.services.LoginService;
-import com.elvis.login.logueo.services.LoginServiceImplement;
-import com.elvis.login.logueo.services.ProductoService;
-import com.elvis.login.logueo.services.ProductoServiceImplement;
+import com.elvis.login.logueo.services.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +18,7 @@ import java.util.Optional;
 public class ProductoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         ProductoService service= new ProductoServiceImplement();
         List<Producto> productos = service.listar();
         LoginService auth = new LoginServiceImplement();

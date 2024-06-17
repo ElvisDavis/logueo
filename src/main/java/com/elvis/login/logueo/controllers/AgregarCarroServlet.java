@@ -21,6 +21,7 @@ public class AgregarCarroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer idProdudto = Integer.parseInt(req.getParameter("id"));
+
         ProductoService service = new ProductoServiceImplement();
         Optional<Producto> producto = service.porId(idProdudto);
         if (producto.isPresent()) {
