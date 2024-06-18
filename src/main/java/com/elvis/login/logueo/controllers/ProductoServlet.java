@@ -1,6 +1,7 @@
 package com.elvis.login.logueo.controllers;
 
 import com.elvis.login.logueo.models.Producto;
+import com.elvis.login.logueo.repositories.ProductoRepositoryJdbcImpl;
 import com.elvis.login.logueo.services.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,8 +19,8 @@ import java.util.Optional;
 public class ProductoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        ProductoService service= new ProductoServiceImplement();
+        Connection conn= (Connection) req.getAttribute("conn");
+        ProductoService service= new ProductoServiceJdbcImplment(conn);
         List<Producto> productos = service.listar();
         LoginService auth = new LoginServiceImplement();
         Optional<String> usernameOptional= auth.getUserName(req);
