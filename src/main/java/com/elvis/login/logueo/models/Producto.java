@@ -10,6 +10,7 @@ public class Producto {
     public Producto(){
 
     }
+
     //Constructor qeu inicializa los parametros
     public Producto(Integer idProducto, String nombre, Categoria categoria, String descripcion, double precio){
         this.idProducto=idProducto;
