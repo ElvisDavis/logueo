@@ -2,6 +2,7 @@ package com.elvis.login.logueo.controllers;
 
 import com.elvis.login.logueo.services.LoginService;
 import com.elvis.login.logueo.services.LoginServiceImplement;
+import com.elvis.login.logueo.services.LoginServiceSessionImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,7 +23,7 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LoginService auth = new LoginServiceImplement();
+        LoginService auth = new LoginServiceSessionImpl();
         Optional<String> usernameOptional = auth.getUserName(req);
         if (usernameOptional.isPresent()) {
             resp.setContentType("text/html;charset=UTF-8");

@@ -18,8 +18,8 @@ public class ProductoRepositoryJdbcImpl implements Repository<Producto> {
     public List<Producto> listar() throws SQLException {
         List<Producto> productos = new ArrayList<>();
         try (Statement smt = conn.createStatement();
-             ResultSet rs = smt.executeQuery("SELECT p.*, c.nombre as nombre_categoria FROM producto as p " +
-                     "inner join categoria as c ON (p.categoria = c.idcategoria) order by p.idproducto ASC")) {
+             ResultSet rs = smt.executeQuery("SELECT p.idproducto, p.nombre, p.descripcion, p.precio, c.idcategoria AS categoria, " +
+                     "c.nombre AS nombre_categoria FROM producto as p JOIN categoria as c ON p.categoria = c.idcategoria")) {
             while (rs.next()) {
                 Producto p = getProducto(rs);
                 productos.add(p);
@@ -34,8 +34,8 @@ public class ProductoRepositoryJdbcImpl implements Repository<Producto> {
     @Override
     public Producto porId(Integer id) throws SQLException {
         Producto producto = null;
-        try (PreparedStatement smt = conn.prepareStatement("SELECT p*, c.nombre as categoria FROM producto as p"+
-                "inner join categoria as c ON(p.categoria=c.idcategoria WHERE p.idproducto=?)")) {
+        try (PreparedStatement smt = conn.prepareStatement("SELECT p.*, c.nombre as nombre_categoria FROM producto as p " +
+                "inner join categoria as c ON(p.categoria=c.idcategoria) WHERE p.idproducto=?")) {
             smt.setInt(1, id);
             try (ResultSet rs = smt.executeQuery()) {
                 if (rs.next()) {
