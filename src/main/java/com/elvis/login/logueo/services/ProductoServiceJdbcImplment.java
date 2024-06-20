@@ -27,6 +27,20 @@ public class ProductoServiceJdbcImplment implements ProductoService {
 
     @Override
     public Optional<Producto> porId(Integer id) {
-        return Optional.empty();
+       try {
+           return Optional.ofNullable(repositoryJdbc.porId(id));
+       } catch (SQLException throwables) {
+           throw  new ServiceJdbcException(throwables.getMessage(), throwables.getCause());
+       }
+    }
+
+    @Override
+    public void guardar(Producto producto) {
+
+    }
+
+    @Override
+    public void eliminar(Integer id) {
+
     }
 }

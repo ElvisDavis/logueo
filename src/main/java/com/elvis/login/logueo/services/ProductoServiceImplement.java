@@ -18,6 +18,16 @@ public class ProductoServiceImplement implements ProductoService {
         return listar().stream().filter(p->p.getIdProducto().equals(id)).findAny();
     }
 
+    @Override
+    public void guardar(Producto producto) {
+
+    }
+
+    @Override
+    public void eliminar(Integer id) {
+
+    }
+
 
 }
 
