@@ -1,5 +1,6 @@
 package com.elvis.login.logueo.services;
 
+import com.elvis.login.logueo.models.Categoria;
 import com.elvis.login.logueo.models.Producto;
 
 import java.util.List;
@@ -14,6 +15,11 @@ public interface ProductoService {
     void guardar(Producto producto);
     //Implementamos un mpetodo para eliminar
     void eliminar(Integer id);
+    //Implementamos un método para listar la categoria
+    List<Categoria> listarCategorias();
+    //Implementamos un método para obtener el id de la ctegoria
+    Optional<Categoria> porIdCategoria(Integer id);
+
 
 
 

@@ -6,19 +6,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriaRepositoryImplement implements Repository<Categoria>{
+public class CategoriaRepositoryJdbImplment implements Repository<Categoria>{
     private Connection conn;
 
-    public CategoriaRepositoryImplement(Connection conn) {
+    public CategoriaRepositoryJdbImplment(Connection conn) {
         this.conn = conn;
     }
 
     @Override
     public List<Categoria> listar() throws SQLException {
-        List<Categoria> categorias= new ArrayList<>();
-        try (Statement stmt= conn.createStatement();
-             ResultSet rs=stmt.executeQuery("select * from categoria")){
-            while (rs.next()){
+        List<Categoria> categorias = new ArrayList<>();
+        try (Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from categoria")){
+            while (rs.next()) {
                 Categoria categoria = getCategoria(rs);
                 categorias.add(categoria);
             }
@@ -28,15 +28,14 @@ public class CategoriaRepositoryImplement implements Repository<Categoria>{
 
     @Override
     public Categoria porId(Integer id) throws SQLException {
-        Categoria categoria= null;
-        try (PreparedStatement stmt = conn.prepareStatement("select * from categoria where idcategoria=?")){
+        Categoria categoria = null;
+        try (PreparedStatement stmt = conn.prepareStatement("select * from categoria where idcategoria = ?")){
             stmt.setInt(1,id);
             try (ResultSet rs = stmt.executeQuery()){
-                if (rs.next()){
-                    categoria=getCategoria(rs);
+                if(rs.next()){
+                    categoria = getCategoria(rs);
                 }
             }
-
         }
         return categoria;
     }
@@ -60,8 +59,7 @@ public class CategoriaRepositoryImplement implements Repository<Categoria>{
     public Categoria desactivar(Integer id) throws SQLException {
         return null;
     }
-
-    private Categoria getCategoria(ResultSet rs)throws SQLException{
+    private Categoria getCategoria(ResultSet rs) throws SQLException {
         Categoria categoria = new Categoria();
         categoria.setNombre(rs.getString("nombre"));
         categoria.setIdCategoria(rs.getInt("idcategoria"));

@@ -28,6 +28,16 @@ public class ProductoServiceImplement implements ProductoService {
 
     }
 
+    @Override
+    public List<Categoria> listarCategorias() {
+        return List.of();
+    }
+
+    @Override
+    public Optional<Categoria> porIdCategoria(Integer id) {
+        return Optional.empty();
+    }
+
 
 }
 

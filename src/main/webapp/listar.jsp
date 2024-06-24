@@ -19,7 +19,7 @@ Optional<String> username =(Optional)request.getAttribute("username");
     <h1>LISTADO DE PRODUCTOS</h1>
     <%if(username.isPresent()){%>
         <div>Hola <%=username.get()%>,  Bienvenido!</div>
-        <p><a href="<%=request.getContextPath()%>/productos/form"> CREAR NUEVO PRODUCTO </a></p>
+        <p><a href="<%=request.getContextPath()%>/formulario"> CREAR NUEVO PRODUCTO </a></p>
     <%}%>
     <table>
         <tr>
